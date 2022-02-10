@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "64673894501",
+    "project_id": "foodsellerapp-facb0",
+    "storage_bucket": "foodsellerapp-facb0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64673894501:android:e76226659c7fdb4a38b68c",
+        "android_client_info": {
+          "package_name": "com.ssr.foodsellersapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64673894501-pb0t6gem95l8g9ml37uatkih3bs1enlh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-jIbvAFcJmO4a5TaA18-OZmMIlfyYCAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64673894501-pb0t6gem95l8g9ml37uatkih3bs1enlh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
