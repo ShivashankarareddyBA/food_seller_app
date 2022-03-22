@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:food_seller_app/mainScreens/items_screen.dart';
-import 'package:food_seller_app/model/menus.dart';
+import 'package:food_seller_app/model/items.dart';
 
-class InfoDesignWidget extends StatefulWidget {
-  Menus? model;
+
+
+class ItemsDesignWidget extends StatefulWidget
+{
+  Items? model;
   BuildContext? context;
 
-  InfoDesignWidget({ this.model,  this.context});
+  ItemsDesignWidget({this.model, this.context});
 
   @override
-  _InfoDesignWidgetState createState() => _InfoDesignWidgetState();
+  _ItemsDesignWidgetState createState() => _ItemsDesignWidgetState();
 }
 
-class _InfoDesignWidgetState extends State<InfoDesignWidget> {
+
+
+class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: ()
       {
-        Navigator.push(context, MaterialPageRoute(builder: (c) => ItemsScreen(model: widget.model,)));
+        //Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemsScreen(model: widget.model)));
       },
       splashColor: Colors.amber,
       child: Padding(
@@ -33,29 +37,30 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
                 thickness: 3,
                 color: Colors.grey[300],
               ),
-              Image.network(
-                widget.model!.thumbnailUrl!,
-                height: 200.0,
-                fit: BoxFit.cover,
-              ),
-              const SizedBox(
-                height: 1.0,
-              ),
+              const SizedBox(height: 1,),
               Text(
-                widget.model!.menuTitle!,
+                widget.model!.title!,
                 style: const TextStyle(
                   color: Colors.cyan,
-                  fontSize: 20,
+                  fontSize: 18,
                   fontFamily: "Train",
                 ),
               ),
+              const SizedBox(height: 2,),
+              Image.network(
+                widget.model!.thumbnailUrl!,
+                height: 220.0,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(height: 2.0,),
               Text(
-                widget.model!.menuInfo!,
+                widget.model!.shortInfo!,
                 style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 12,
                 ),
               ),
+              const SizedBox(height: 1,),
               Divider(
                 height: 4,
                 thickness: 3,
