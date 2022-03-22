@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:food_seller_app/authentication/auth_screen.dart';
 import 'package:food_seller_app/global/global.dart';
 import 'package:food_seller_app/model/menus.dart';
 import 'package:food_seller_app/upload_screens/menus_upload_screen.dart';
@@ -19,6 +18,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late final String? userId;
+
+  @override
+  void initState() {
+    userId = sharedPreferences!.getString("uid");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,31 +71,65 @@ class _HomeScreenState extends State<HomeScreen> {
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection("sellers")
-                .doc(sharedPreferences!.getString("uid"))
+                .doc(userId)
                 .collection('menus')
                 .snapshots(),
             builder: (context, snapshot) {
-              return !snapshot.hasData
-                  ? SliverToBoxAdapter(
-                      child: Center(
-                        child: circularProgress(),
-                      ),
-                    )
-                  : SliverStaggeredGrid.countBuilder(
-                      crossAxisCount: 1,
-                      staggeredTileBuilder: (c) => const StaggeredTile.fit(1),
-                      itemBuilder: (context, index) {
-                        Menus model = Menus.fromJson(
-                          snapshot.data!.docs[index].data()!
-                              as Map<String, dynamic>,
-                        );
-                        return InfoDesignWidget(
-                          model: model,
-                          context: context,
-                        );
-                      },
-                      itemCount: snapshot.data!.docs.length,
-                    );
+              if (snapshot.connectionState == ConnectionState.none) {
+                return SliverToBoxAdapter(
+                  child: Center(
+                    child: Text('No data'),
+                  ),
+                );
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                return SliverToBoxAdapter(
+                  child: Center(
+                    child: Text('Done'),
+                  ),
+                );
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return SliverToBoxAdapter(
+                  child: Center(
+                    child: circularProgress(),
+                  ),
+                );
+              } else if (snapshot.connectionState == ConnectionState.active) {
+                if (snapshot.hasError) {
+                  return SliverToBoxAdapter(
+                    child: Center(
+                      child: Text('Something went wrong'),
+                    ),
+                  );
+                } else if (snapshot.hasData) {
+                  return SliverStaggeredGrid.countBuilder(
+                    crossAxisCount: 1,
+                    staggeredTileBuilder: (c) => const StaggeredTile.fit(1),
+                    itemBuilder: (context, index) {
+                      final data = snapshot.data!.docs[index].data()
+                          as Map<String, dynamic>;
+                      Menus model = Menus.fromJson(
+                        data,
+                      );
+                      return InfoDesignWidget(
+                        model,
+                        context: context,
+                      );
+                    },
+                    itemCount: snapshot.data!.docs.length,
+                  );
+                } else {
+                  return SliverToBoxAdapter(
+                    child: Center(
+                      child: Text('No data found'),
+                    ),
+                  );
+                }
+              }
+              return SliverToBoxAdapter(
+                child: Center(
+                  child: Text('Waiting...'),
+                ),
+              );
             },
           ),
         ],

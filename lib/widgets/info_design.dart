@@ -3,10 +3,10 @@ import 'package:food_seller_app/mainScreens/items_screen.dart';
 import 'package:food_seller_app/model/menus.dart';
 
 class InfoDesignWidget extends StatefulWidget {
-  Menus? model;
+  final Menus model;
   BuildContext? context;
 
-  InfoDesignWidget({ this.model,  this.context});
+  InfoDesignWidget(this.model, {this.context});
 
   @override
   _InfoDesignWidgetState createState() => _InfoDesignWidgetState();
@@ -16,9 +16,13 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()
-      {
-        Navigator.push(context, MaterialPageRoute(builder: (c) => ItemsScreen(model: widget.model,)));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (c) => ItemsScreen(
+                      model: widget.model,
+                    )));
       },
       splashColor: Colors.amber,
       child: Padding(
@@ -34,15 +38,15 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
                 color: Colors.grey[300],
               ),
               Image.network(
-                widget.model!.thumbnailUrl!,
-                height: 200.0,
+                widget.model.thumbnailUrl!,
+                height: 220.0,
                 fit: BoxFit.cover,
               ),
               const SizedBox(
                 height: 1.0,
               ),
               Text(
-                widget.model!.menuTitle!,
+                widget.model.menuTitle!,
                 style: const TextStyle(
                   color: Colors.cyan,
                   fontSize: 20,
@@ -50,7 +54,7 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
                 ),
               ),
               Text(
-                widget.model!.menuInfo!,
+                widget.model.menuInfo ?? '',
                 style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 12,
