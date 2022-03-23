@@ -76,13 +76,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.none) {
-                return SliverToBoxAdapter(
+                return const SliverToBoxAdapter(
                   child: Center(
                     child: Text('No data'),
                   ),
                 );
               } else if (snapshot.connectionState == ConnectionState.done) {
-                return SliverToBoxAdapter(
+                return const SliverToBoxAdapter(
                   child: Center(
                     child: Text('Done'),
                   ),
@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               } else if (snapshot.connectionState == ConnectionState.active) {
                 if (snapshot.hasError) {
-                  return SliverToBoxAdapter(
+                  return const SliverToBoxAdapter(
                     child: Center(
                       child: Text('Something went wrong'),
                     ),
@@ -118,14 +118,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: snapshot.data!.docs.length,
                   );
                 } else {
-                  return SliverToBoxAdapter(
+                  return const SliverToBoxAdapter(
                     child: Center(
                       child: Text('No data found'),
                     ),
                   );
                 }
               }
-              return SliverToBoxAdapter(
+              return const SliverToBoxAdapter(
                 child: Center(
                   child: Text('Waiting...'),
                 ),
