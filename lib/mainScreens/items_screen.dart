@@ -72,7 +72,9 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 .collection("menus")
                 .doc(widget.model!.menuID)
                 .collection("items")
-                .snapshots(),
+                .orderBy("publishedDate", descending: true)
+
+              .snapshots(),
             builder: (context, snapshot) {
               return !snapshot.hasData
                   ? SliverToBoxAdapter(

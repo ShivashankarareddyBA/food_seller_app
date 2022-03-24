@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_seller_app/authentication/auth_screen.dart';
 import 'package:food_seller_app/global/global.dart';
+import 'package:food_seller_app/mainScreens/home_screen.dart';
 
 
 
@@ -64,7 +65,7 @@ class MyDrawer extends StatelessWidget
                   ),
                   onTap: ()
                   {
-
+                    Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
                   },
                 ),
                 const Divider(

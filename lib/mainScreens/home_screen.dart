@@ -73,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 .collection("sellers")
                 .doc(userId)
                 .collection('menus')
+                .orderBy("publishedDate", descending: true)
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.none) {
