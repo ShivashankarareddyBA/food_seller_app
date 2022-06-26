@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_seller_app/authentication/auth_screen.dart';
 import 'package:food_seller_app/global/global.dart';
+import 'package:food_seller_app/mainScreens/earnings_screen.dart';
+import 'package:food_seller_app/mainScreens/history_screen.dart';
 import 'package:food_seller_app/mainScreens/home_screen.dart';
+import 'package:food_seller_app/mainScreens/new_orders_screen.dart';
 
 
 
@@ -82,6 +85,8 @@ class MyDrawer extends StatelessWidget
                   ),
                   onTap: ()
                   {
+                    Navigator.push(context, MaterialPageRoute(builder: (c)=> const EarningsScreen()));
+
 
                   },
                 ),
@@ -98,6 +103,8 @@ class MyDrawer extends StatelessWidget
                   ),
                   onTap: ()
                   {
+                    Navigator.push(context, MaterialPageRoute(builder: (c)=> NewOrdersScreen()));
+
 
                   },
                 ),
@@ -114,6 +121,8 @@ class MyDrawer extends StatelessWidget
                   ),
                   onTap: ()
                   {
+                    Navigator.push(context, MaterialPageRoute(builder: (c)=> HistoryScreen()));
+
 
                   },
                 ),

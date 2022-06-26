@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_seller_app/mainScreens/item_detail_screen.dart';
 import 'package:food_seller_app/model/items.dart';
 
 
@@ -22,7 +23,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
     return InkWell(
       onTap: ()
       {
-        //Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemsScreen(model: widget.model)));
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemDetailsScreen(model: widget.model)));
       },
       splashColor: Colors.amber,
       child: Padding(
